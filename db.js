@@ -29,6 +29,71 @@ async function createCourse(courseTitle, description, date, prof, preReq, requir
     conn.collection('courses').insertOne({ courseTitle, description, date, prof, preReq, requirements });
 }
 
+async function createCourseManager(firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, empId, position, dept, joinDate) {
+    var conn = await connect();
+
+    var existingCourse = await conn.collection('courseManager').findOne({ firstName });
+    if (existingCourse != null) {
+        throw new Error('CouseManager already exists!');
+    }
+
+    conn.collection('courseManager').insertOne({ firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password,empId, position, dept, joinDate });
+}
+
+//createCourseManager("John","Doe","09-09-91","Male","123456789","john.doe@gmail.com","johnd","","1","HOD","CS","01-01-2020");
+
+
+async function getCourseManager(empId) {
+    var conn = await connect();
+    var course = await conn.collection('courseManager').findOne({ empId });
+
+    return [firstName, lastName, phoneNumber, emailAddress,empId, position, dept];
+
+}
+
+//getCourseManager("1");
+
+async function createStudent(firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, studentNumber, program, programArea, enrolledDate, gradDate) {
+    var conn = await connect();
+
+    var existingCourse = await conn.collection('Student').findOne({ studentNumber });
+    if (existingCourse != null) {
+        throw new Error('Student already exists!');
+    }
+
+    conn.collection('Student').insertOne({ firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, studentNumber, program, programArea, enrolledDate, gradDate });
+}
+
+
+async function getStudent(studentNumber) {
+    var conn = await connect();
+    var course = await conn.collection('student').findOne({ studentNumber });
+
+    return [firstName, lastName, phoneNumber, emailAddress,studentNumber, program, enrolledDate, gradDate];
+
+
+}
+
+async function createStudentInformation(studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus) {
+    var conn = await connect();
+
+    var existingCourse = await conn.collection('StudentInformation').findOne({ studentNumber });
+    if (existingCourse != null) {
+        throw new Error('StudentInformation already exists!');
+    }
+
+    conn.collection('studentInformation').insertOne({studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus});
+}
+
+async function getStudentInformation(studentNumber) {
+    var conn = await connect();
+    var course = await conn.collection('studentInformation').findOne({ studentNumber });
+
+    return [studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus];
+
+}
+
+
 async function login(courseTitle, description, date) {
     var conn = await connect();
     var course = await conn.collection('courses').findOne({ courseTitle });
@@ -93,6 +158,13 @@ module.exports = {
     addNewAntiReq,
     getCourseDetails,
     deleteCourseAntiReq,
+    createCourseManager, 
+    createStudent, 
+    createStudentInformation, 
+    getCourseManager, 
+    getStudent, 
+    getStudentInformation
+
 }
 
 // createCourse(
