@@ -29,3 +29,10 @@ p {
 #sidebar {
   margin-right: 1.75rem;
 }
+/* View all Courses */
+.course-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
