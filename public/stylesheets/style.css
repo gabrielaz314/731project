@@ -1,8 +1,31 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1rem "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/* Typography Defaults */
+h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: medium;
+}
+p {
+  font-size: 1rem;
+  color: hsl(0, 0%, 29%);
+}
+/* Sidebar*/
+#logo {
+  height: auto;
+  width: 100%;
+  max-width: 250px;
+  margin: auto;
+}
+#sidebar {
+  margin-right: 1.75rem;
 }
