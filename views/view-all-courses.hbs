@@ -1,8 +1,9 @@
+{{> content_title title="Current Course Calendar"}}
 <div class="tile is-ancestor">
   {{#each calendar}}
     <div class="tile is-parent is-vertical is-6 p-4">
       {{#each this}}
-        <div class="tile box is-flex is-flex-direction-column ">
+        <div class="tile box is-flex is-flex-direction-column has-background-link-light">
           <h3 class="title is-5">Semester {{this.name}}</h3>
           {{#each this.courses}}
             {{> course_card course=this}}
