@@ -67,7 +67,13 @@ async function Course(courseId, courseTitle, courseCode, courseSection, courseDe
 }
 
 //Course("101", "Introduction to Computer Science", "CS101", "AA0", "This is an introduction to the Science of Computer and history of how it evolved after its invention.", "1", "60", "Computer Science", "Fall", "2021");
-//Course("102", "Introduction to Computer Science", "CS102", "AA0", "This is an introduction to the Science of Computer and history of how it evolved after its invention.", "1", "60", "Computer Science", "Winter", "2022");
+//Course("102a", "Introduction to Computer Science", "CS102", "AA0", "This is an introduction to the Science of Computer and history of how it evolved after its invention.", "1", "60", "Computer Science", "Winter", "2022");
+//Course("103a", "Software Engineering: Concepts", "CS103", "SE1", "An understanding of Software Engineering and its approach to developing software", "1", "60", "Computer Science", "Winter", "2022");
+//Course("103b", "Software Engineering: Concepts", "CS103", "SE2", "An understanding of Software Engineering and its approach to developing software", "1", "60", "Computer Science", "Winter", "2022");
+//Course("301a", "Web Development", "CS700", "WD1", "This course will cover concepts of Web development", "1", "60", "Computer Science", "Spring", "2022");
+//Course("301b", "Web Development", "CS700", "WD1", "This course will cover concepts of Web development", "1", "60", "Computer Science", "Fall", "2022");
+
+
 
 async function NonRelatedCourse(courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type)   {
     var conn = await connect();
@@ -103,7 +109,10 @@ async function CourseCalendar(courseId, studentNumber, courseStart, courseEnd, s
     conn.collection('CourseCalendar').insertOne({courseId, studentNumber, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode});
 }
 
-//CourseCalendar("101", "123456","14-07-2022", "20-05-2022", "Winter2022", "1","John Doe", "Lecture in class + Lab");
+//CourseCalendar("101", "123456","14-01-2022", "20-05-2022", "Winter2022", "1","John Doe", "Lecture in class + Lab");
+//CourseCalendar("103a", "123456","14-01-2022", "20-05-2022", "Winter2022", "1","Gorge Kram", "Lecture in class + Lab");
+
+
 
 async function getCourseManager(empId) {
     var conn = await connect();
@@ -141,7 +150,7 @@ async function getStudent(studentNumber) {
 
 }
 
-async function createStudentInformation(studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus) {
+async function createStudentInformation(studentNumber, courseId, programArea, enrolledDate, completedDate, semesterTerm, gradeReceived, courseStatus) {
     var conn = await connect();
 
     var existingCourse = await conn.collection('StudentInformation').findOne({ studentNumber });
@@ -149,17 +158,44 @@ async function createStudentInformation(studentNumber, courseId, programArea,enr
         throw new Error('StudentInformation already exists!');
     }
 
-    conn.collection('studentInformation').insertOne({studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus});
+    conn.collection('studentInformation').insertOne({studentNumber, courseId, programArea, enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus});
 }
 
+//createStudentInformation("123456","101","Computer Science", "14-01-2022","20-05-2022","Winter2022", "", "Enrolled");
 async function getStudentInformation(studentNumber) {
     var conn = await connect();
-    var course = await conn.collection('studentInformation').findOne({ studentNumber });
+    var course = await conn.collection('studentInformation').find({ studentNumber }).toArray();
 
-    return [studentNumber, courseId, programArea,enrolledDate,completedDate, semesterTerm, gradeReceived, courseStatus];
+    console.log(course);
 
 }
 
+async function addTransferCredits(studentNumber, courseId, university, programArea, enrolledDate, completedDate, semesterTerm, gradeReceived, creditsReceived, courseStatus) {
+    var conn = await connect();
+
+    var existingTransferCredits = await conn.collection('TransferCredits').findOne({ studentNumber:studentNumber, courseId:courseId});
+    if (existingTransferCredits != null) {
+        throw new Error('Transfer Credits for this course already exists!');
+    }
+
+    conn.collection('TransferCredits').insertOne({studentNumber, courseId, university, programArea, enrolledDate, completedDate, semesterTerm, gradeReceived, creditsReceived, courseStatus});
+}
+
+//addTransferCredits("123456", "101", "XXX", "Computer Science", "07-01-2018", "20-05-2018","Winter2018", "A","1","Pass" );
+
+
+async function getTransferCredits(studentNumber) {
+    var conn = await connect();
+    var TransferCredits = await conn.collection('TransferCredits').findOne({studentNumber:studentNumber});
+    console.log(TransferCredits);
+}
+
+async function test(){
+    console.log(await getCourseManager("1"));
+}
+
+//getCourseManager("2");
+//test();
 
 async function login(courseTitle, description, date) {
     var conn = await connect();
@@ -197,14 +233,33 @@ async function getCourseDetails(courseTitle) {
 
 async function getAllCourses() {
     var conn = await connect();
-    var course = await conn.collection('Course').find().sort({"year":-1, "semester":1, "courseId":1});
+    var course = await conn.collection('Course').find().sort({"year":-1, "semester":1, "courseId":1}).toArray();
 
     console.log(course);
 
 }
 
-getAllCourses();
+async function getAllCoursesKeyword(keyword) {
+    var conn = await connect();
+    var course = await conn.collection('Course').find( { $text: { $search: keyword } }).toArray();
 
+    console.log(course);
+
+}
+
+async function getNonRelatedCourse(studentNumber) {
+    var conn = await connect();
+    var course = await conn.collection('NonRelatedCourse').find({studentNumber:studentNumber}).toArray();
+
+    console.log(course);
+
+}
+
+//getNonRelatedCourse("123456");
+//getAllCourses();
+//getAllCoursesKeyword("102");
+//getTransferCredits("123456");
+//getStudentInformation("123456");
 
 
 module.exports = {
