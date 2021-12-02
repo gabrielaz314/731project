@@ -1,8 +1,64 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1rem "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/* Typography Defaults */
+h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: medium;
+}
+p {
+  font-size: 1rem;
+  color: hsl(0, 20%, 1%);
+}
+/* Sizing for flex-box */
+.w-full {
+  width: 100%;
+}
+.w-1\/2 {
+  width: 50%;
+}
+/* Grid */
+.grid  {
+  display: grid;
+}
+.grid-cols-2  {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3  {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+/* Sidebar*/
+#logo {
+  height: auto;
+  width: 100%;
+  max-width: 250px;
+  margin: auto;
+}
+#sidebar {
+  margin-right: 1.75rem;
+}
+/* View all Courses */
+.course-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

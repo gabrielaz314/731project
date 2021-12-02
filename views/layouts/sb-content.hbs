@@ -15,7 +15,22 @@
   </head>
   <body>
     <section class="section">
-      {{{body}}}
+      <div class="columns is-variable">
+        <div id="sidebar" class="column is-one-quarter">
+          {{> sidebar}}
+        </div>
+        <div class="column box is-shadowless has-background-link">
+          {{{body}}}
+        </div>
+      </div>
     </section>
   </body>
+  {{!-- Set the active link for the sidebar --}}
+  <script>
+    $(document).ready(function() {
+      // current window path
+      var pathname = window.location.pathname;
+      $('#sidebar a[href="' + pathname + '"]').addClass('is-active');
+    });
+  </script>
 </html>
