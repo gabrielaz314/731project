@@ -8,6 +8,6 @@
 
 
 Notes:
-UI files are in folder [views](https://gitlab.scs.ryerson.ca/gzmak/731project/-/tree/main/views)
+UI files are in folder [views](https://github.com/gabrielaz314/731project/tree/master/views)
 Files are .hbs (handlebar files, use HTML syntax)
 
