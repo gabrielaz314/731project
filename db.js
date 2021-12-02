@@ -1,7 +1,7 @@
 var { MongoClient } = require('mongodb');
 
-var url = 'mongodb+srv://testUser:DBPASS@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority';
-
+//var url = 'mongodb+srv://admin:admin@cluster0.j5utg.mongodb.net/cps731project?retryWrites=true&w=majority';
+var url = 'mongodb+srv://testUser:731project@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority';
 
 var db = null;
 var client = null;
@@ -32,26 +32,93 @@ async function createCourse(courseTitle, description, date, prof, preReq, requir
 async function createCourseManager(firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, empId, position, dept, joinDate) {
     var conn = await connect();
 
-    var existingCourse = await conn.collection('courseManager').findOne({ firstName });
-    if (existingCourse != null) {
+    var existingCourseManager = await conn.collection('courseManager').findOne({ empId });
+    if (existingCourseManager != null) {
         throw new Error('CouseManager already exists!');
     }
 
     conn.collection('courseManager').insertOne({ firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password,empId, position, dept, joinDate });
 }
 
-//createCourseManager("John","Doe","09-09-91","Male","123456789","john.doe@gmail.com","johnd","","1","HOD","CS","01-01-2020");
+//createCourseManager("John","Doe","09-09-71","Male","1234567890","john.doe@gmail.com","johndoe","","1","HOD","CS","01-01-2010");
+//createCourseManager("John","Dq","10-09-91","Male","1234566789","john.dq@gmail.com","johndq","","2","Prof","CS","01-01-2020");
 
+async function savedCourse(courseId, courseCode, courseSection, savedDate, semesterTerm)    {
+    var conn = await connect();
+
+    var existingSavedCourse = await conn.collection('savedCourse').findOne({courseId});
+    if (existingSavedCourse != null) {
+        throw new Error('Course is already Saved!');
+
+    }
+    conn.collection('savedCourse').insertOne({courseId, courseCode, courseSection, savedDate, semesterTerm});
+}
+
+//savedCourse("101","CS101","AA0", "10-11-20", "Winter2021");
+
+async function Course(courseId, courseTitle, courseCode, courseSection, courseDescription, courseCredits, durationHours, department, semester, year)    {
+    var conn = await connect();
+
+    var existingCourse = await conn.collection('Course').findOne({courseId});
+    if (existingCourse != null) {
+        throw new Error('Course already exists!');
+    }
+    conn.collection('Course').insertOne({courseId, courseTitle, courseCode, courseSection, courseDescription, courseCredits, durationHours, department, semester, year});
+}
+
+//Course("101", "Introduction to Computer Science", "CS101", "AA0", "This is an introduction to the Science of Computer and history of how it evolved after its invention.", "1", "60", "Computer Science", "Fall", "2021");
+//Course("102", "Introduction to Computer Science", "CS102", "AA0", "This is an introduction to the Science of Computer and history of how it evolved after its invention.", "1", "60", "Computer Science", "Winter", "2022");
+
+async function NonRelatedCourse(courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type)   {
+    var conn = await connect();
+
+    var existingNonRelatedCourse = await conn.collection('NonRelatedCourse').findOne({courseId});
+    if (existingNonRelatedCourse != null) {
+        throw new Error('Course already exists!');
+    }
+    conn.collection('NonRelatedCourse').insertOne({courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type});
+}
+
+//NonRelatedCourse("909", "123456", "MUS", "MU1", "07-01-2019","30-04-2019", "A", "Lower Level Liberal");
+
+async function CourseRequirement(courseId, preReq, antiReq, coReq)   {
+    var conn = await connect();
+
+    var existingCourseRequirement = await conn.collection('CourseRequirement').findOne({courseId});
+    if (existingCourseRequirement != null) {
+        throw new Error('Course already exists!');
+    }
+    conn.collection('CourseRequirement').insertOne({courseId, preReq, antiReq, coReq});
+}
+//CourseRequirement("101", "none", "none", "none");
+//CourseRequirement("102", "none", "none", "none");
+
+async function CourseCalendar(courseId, studentNumber, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode)   {
+    var conn = await connect();
+
+    var existingCourseCalendar = await conn.collection('CourseCalendar').findOne({courseId});
+    if (existingCourseCalendar != null) {
+        throw new Error('Course already exists!');
+    }
+    conn.collection('CourseCalendar').insertOne({courseId, studentNumber, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode});
+}
+
+//CourseCalendar("101", "123456","14-07-2022", "20-05-2022", "Winter2022", "1","John Doe", "Lecture in class + Lab");
 
 async function getCourseManager(empId) {
     var conn = await connect();
-    var course = await conn.collection('courseManager').findOne({ empId });
-
-    return [firstName, lastName, phoneNumber, emailAddress,empId, position, dept];
-
+    var courseManager = await conn.collection('courseManager').findOne({empId:empId});
+    console.log(courseManager);
+    //console.log(courseManager);
+    //return(empId);
 }
 
-//getCourseManager("1");
+async function test(){
+    console.log(await getCourseManager("1"));
+}
+
+//getCourseManager("2");
+//test();
 
 async function createStudent(firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, studentNumber, program, programArea, enrolledDate, gradDate) {
     var conn = await connect();
@@ -128,28 +195,16 @@ async function getCourseDetails(courseTitle) {
 
 }
 
-async function test() {
-   console.log(await getCourseDetails('CPS700')); 
-}
-
-async function deleteCourseAntiReq(courseTitle, antiReq) {
+async function getAllCourses() {
     var conn = await connect();
+    var course = await conn.collection('Course').find().sort({"year":-1, "semester":1, "courseId":1});
 
-    await conn.collection('courses').updateOne(
-        { courseTitle },
-        {
-            $pull: {
-                antiReq: antiReq,
-            },
-        },
-    )
+    console.log(course);
+
 }
 
-async function test2() {
-    console.log(await getCourseDetails('CPS700')); 
-    await deleteCourseAntiReq('CPS700', 'CPS400');
-    console.log(await getCourseDetails('CPS700')); 
-}
+getAllCourses();
+
 
 
 module.exports = {
@@ -157,7 +212,6 @@ module.exports = {
     login,
     addNewAntiReq,
     getCourseDetails,
-    deleteCourseAntiReq,
     createCourseManager, 
     createStudent, 
     createStudentInformation, 
