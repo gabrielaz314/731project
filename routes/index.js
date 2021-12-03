@@ -73,6 +73,12 @@ router.get('/view-course-plan', function(req, res) {
     layout: '/layouts/sb-content',
     // using the dummy data for calendar
     course_plan: splitSemesters(calendar),
+router.get('/course-search', function(req, res) {
+  res.render('course-search', {
+    title: 'Course Search',
+    layout: '/layouts/sb-content',
+    // using the dummy data for transfer_courses
+    search_courses: transfer_courses,
   });
 });
 
