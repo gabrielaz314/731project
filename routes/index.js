@@ -59,5 +59,13 @@ router.get('/non-related', function(req, res) {
     non_related_courses: non_related_courses,
   });
 });
+router.get('/course-search', function(req, res) {
+  res.render('course-search', {
+    title: 'Course Search',
+    layout: '/layouts/sb-content',
+    // using the dummy data for transfer_courses
+    search_courses: transfer_courses,
+  });
+});
 
 module.exports = router;
