@@ -110,7 +110,7 @@ async function getSavedCourses(studentNumber) {
 //---------------------------------
 // NonRelatedCourse Table Queries
 //---------------------------------
-async function NonRelatedCourse(courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type)   {
+async function createNonRelatedCourse(courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type)   {
     var conn = await connect();
 
     var existingNonRelatedCourse = await conn.collection('NonRelatedCourse').findOne({courseId});
@@ -119,7 +119,7 @@ async function NonRelatedCourse(courseId, studentNumber, courseCode, courseSecti
     }
     conn.collection('NonRelatedCourse').insertOne({courseId, studentNumber, courseCode, courseSection, startDate, endDate, grade, type});
 }
-//NonRelatedCourse("909", "123456", "MUS", "MU1", "07-01-2019","30-04-2019", "A", "Lower Level Liberal");
+//createNonRelatedCourse("909", "123456", "MUS", "MU1", "07-01-2019","30-04-2019", "A", "Lower Level Liberal");
 
 async function getNonRelatedCourse(studentNumber) {
     var conn = await connect();
@@ -134,7 +134,7 @@ async function getNonRelatedCourse(studentNumber) {
 //---------------------------------
 // CourseRequirement Table Queries
 //---------------------------------
-async function CourseRequirement(courseId, preReq, antiReq, coReq)   {
+async function createCourseRequirement(courseId, preReq, antiReq, coReq)   {
     var conn = await connect();
 
     var existingCourseRequirement = await conn.collection('CourseRequirement').findOne({courseId});
@@ -143,8 +143,8 @@ async function CourseRequirement(courseId, preReq, antiReq, coReq)   {
     }
     conn.collection('CourseRequirement').insertOne({courseId, preReq, antiReq, coReq});
 }
-//CourseRequirement("101", "none", "none", "none");
-//CourseRequirement("102", "none", "none", "none");
+//createCourseRequirement("101", "none", "none", "none");
+//createCourseRequirement("102", "none", "none", "none");
 
 
 
@@ -152,19 +152,25 @@ async function CourseRequirement(courseId, preReq, antiReq, coReq)   {
 //---------------------------------
 // CourseCalendar Table Queries 
 //---------------------------------
-async function CourseCalendar(courseId, studentNumber, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode)   {
+async function addCourseToCalendar(courseId, studentNumber, calendarPlanName, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode)   {
     var conn = await connect();
 
-    var existingCourseCalendar = await conn.collection('CourseCalendar').findOne({courseId});
-    if (existingCourseCalendar != null) {
-        throw new Error('Course already exists!');
+    var existingCourse = await conn.collection('CourseCalendar').findOne({courseId, calendarPlanName});
+    if (existingCourse != null) {
+        throw new Error('Course already exists in this course plan!');
     }
-    conn.collection('CourseCalendar').insertOne({courseId, studentNumber, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode});
+    conn.collection('CourseCalendar').insertOne({courseId, studentNumber, calendarPlanName, courseStart, courseEnd, semesterTerm, courseCredits, Professor, deliveryMode});
 }
-//CourseCalendar("101", "123456","14-01-2022", "20-05-2022", "Winter2022", "1","John Doe", "Lecture in class + Lab");
-//CourseCalendar("103a", "123456","14-01-2022", "20-05-2022", "Winter2022", "1","Gorge Kram", "Lecture in class + Lab");
+//addCourseToCalendar("101", "123456", "Plan 1", "14-01-2022", "20-05-2022", "Winter2022", "1","John Doe", "Lecture in class + Lab");
+//addCourseToCalendar("103a", "123456", "Plan 1", "14-01-2022", "20-05-2022", "Winter2022", "1","Gorge Kram", "Lecture in class + Lab");
+//addCourseToCalendar("103a", "123456", "Plan 2", "14-01-2022", "20-05-2022", "Winter2022", "1","Gorge Kram", "Lecture in class + Lab");
 
-
+async function getCourseCalendarCourses(studentNumber, calendarPlanName) {
+    var conn = await connect();
+    var course = await conn.collection('CourseCalendar').find({studentNumber:studentNumber, calendarPlanName:calendarPlanName}).toArray();
+    console.log(course);
+}
+//getCourseCalendarCourses("123456", "Plan 1");
 
 
 //---------------------------------
@@ -252,13 +258,15 @@ async function test(){
 
 
 module.exports = {
-    createCourseManager, 
-    createStudent, 
-    createFulfilledCourse, 
-    getCourseManager, 
-    getStudent, 
+    getAllCourses,
+    getAllCoursesKeyword,
     getFulfilledCourses,
-    createSavedCourse
+    createSavedCourse,
+    getSavedCourses,
+    getNonRelatedCourse,
+    addCourseToCalendar,
+    getCourseCalendarCourses,
+    getTransferCredits,    
 }
 
 
