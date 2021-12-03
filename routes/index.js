@@ -59,6 +59,20 @@ router.get('/non-related', function(req, res) {
     non_related_courses: non_related_courses,
   });
 });
+router.get('/view-saved-courses', function(req, res) {
+  res.render('view-saved-courses', {
+    title: 'View Saved Courses',
+    layout: '/layouts/sb-content',
+    // using the dummy data for transfer_courses
+    saved_courses: transfer_courses,
+  });
+});
+router.get('/view-course-plan', function(req, res) {
+  res.render('view-course-plan', {
+    title: 'View Courses Plan',
+    layout: '/layouts/sb-content',
+    // using the dummy data for calendar
+    course_plan: splitSemesters(calendar),
 router.get('/course-search', function(req, res) {
   res.render('course-search', {
     title: 'Course Search',
