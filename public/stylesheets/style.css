@@ -62,3 +62,14 @@ p {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Course Search */
+form {
+ height: 5%;
+}
+
+input {
+ width: 97%;
+ height: 100%;
+ margin-left: 15px;
+}
