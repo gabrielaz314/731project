@@ -184,10 +184,17 @@ async function getNonRelatedCourse(studentNumber) {
     var conn = await connect();
     var course = await conn.collection('NonRelatedCourse').find({studentNumber:studentNumber}).toArray();
     console.log(course);
+    //return course;
 }
 //getNonRelatedCourse("123456");
 
-
+// const printNonCourse = async () => {
+//     const a = await getNonRelatedCourse("123456");
+//     console.log(a);
+//   };
+//   printNonCourse();
+//var nonrelated = getNonRelatedCourse("123456");
+//console.log(nonrelated);
 
 
 //---------------------------------
@@ -202,13 +209,18 @@ async function createCourseRequirement(courseId, preReq, antiReq, coReq)   {
     }
     conn.collection('CourseRequirement').insertOne({courseId, preReq, antiReq, coReq});
 }
-// createCourseRequirement("1005", " CPS109", "none", "none");
+// createCourseRequirement("1005", "CPS109", "none", "none");
 // createCourseRequirement("1006", "CPS213", "none", "none");
 // createCourseRequirement("1027", "CPS530", "none", "none");
 // createCourseRequirement("1016", "CPS305", "MTH210", "none");
 // createCourseRequirement("1025", "CPS420", "none", "none");
 
-
+async function getCourseRequirement(courseId) {
+    var conn = await connect();
+    var course = await conn.collection('CourseRequirement').find({courseId:courseId}).toArray();
+    console.log(course);
+}
+//getCourseRequirement("1016");
 
 
 //---------------------------------
@@ -237,7 +249,7 @@ async function getCourseCalendarCourses(studentNumber, calendarPlanName) {
     var course = await conn.collection('CourseCalendar').find({studentNumber:studentNumber, calendarPlanName:calendarPlanName}).toArray();
     console.log(course);
 }
-//getCourseCalendarCourses("123456", "Plan 2");
+//getCourseCalendarCourses("123456", "Plan 1");
 
 
 //---------------------------------
@@ -334,6 +346,7 @@ module.exports = {
     createSavedCourse,
     getSavedCourses,
     getNonRelatedCourse,
+    getCourseRequirement,
     addCourseToCalendar,
     getCourseCalendarCourses,
     getTransferCredits,    
