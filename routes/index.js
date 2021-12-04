@@ -8,11 +8,11 @@ const {
 } = require('./testdata')
 
 /* Homepage */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Home' });
-});
+// router.get('/', function(req, res) {
+//   res.render('index', { title: 'Home' });
+// });
 /* Application cannot be accessed until a user has logged in */
-router.get('/login', function(req, res) {
+router.get('/', function(req, res) {
   res.render('login', { title: 'Login Page' });
 });
 
@@ -81,6 +81,12 @@ router.get('/course-search', function(req, res) {
     layout: '/layouts/sb-content',
     // using the dummy data for transfer_courses
     search_courses: transfer_courses,
+  });
+});
+router.get('/profile', function(req, res) {
+  res.render('profile', {
+    title: 'View Profile',
+    layout: '/layouts/sb-content'
   });
 });
 

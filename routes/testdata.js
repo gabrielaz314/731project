@@ -9,6 +9,7 @@ const calendar = [
         prerequisites: "CPS406",
         corequisites: "none",
         antirequisites: "none",
+        saved: true,
       },
       {
         code: "CPS731",

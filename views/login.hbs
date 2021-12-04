@@ -1,7 +1,43 @@
-<h1>Login</h1>
-<input name="username" placeholder="Enter username"/>
-<br>
-<input name="password" placeholder="Enter password" type="password"/>
-<br>
-<input name="login" value="Log In" type="submit"/>
-<input name="register" value="Register" type="submit"/>
+<form class="box w-1/2 mx-auto">
+  <figure class="w-1/2 mx-auto my-6 image">
+    <img src="./images/logo.png">
+  </figure>
+  <div class="block">
+    <h2 class="mb-5">Login</h2>
+  </div>
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control">
+      <input
+        class="input"
+        type="email"
+        placeholder="e.g. alex@example.com"
+      >
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control">
+      <input
+        class="input"
+        type="password"
+        placeholder="********"
+      >
+    </div>
+  </div>
+  <div class="is-flex w-full is-justify-content-flex-end">
+    <a
+      href="/view-all-courses"
+      class="button is-light mr-4"
+    >
+      Register
+    </a>
+    <a 
+      href="/view-all-courses"
+      class="button is-primary"
+    >
+      Sign in
+    </a>
+  </div>
+</form>
