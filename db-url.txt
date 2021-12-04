@@ -1,10 +1,1 @@
-mongodb+srv://testUser:DBPASS@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority
-
-working on the database design
-created a branch from main called as pturakhi
-in db.js file i am working towards creating functions for inserting values in the table and also retrieving them - create course manager for example
-will chk the record trying to enter if it already exists if it does will throw error if not will insert into the doc called course manager
-in the next func getcourse manager i am trying to get the details of the course manager on the basis of emp id and similarly
-student and student info
-will get chris and gabriela to review the changes and merge this accordingly
-will be working on the template created by chris for the frontend in the future along with db
+mongodb+srv://testUser:731project@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority
