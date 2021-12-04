@@ -25,9 +25,9 @@ Files are .hbs (handlebar files, use HTML syntax)
 
 5. Tests for this project are located in the [tests](https://github.com/gabrielaz314/731project/tree/master/tests) folder. To run these tests:
       - Run `npm start` to run the project
-      - In a seperate terminal, navigate to the project folder and run `npx nightwatch tests/login.js --env chrome` (replace 'chrome' with your browser)
-      - Note: the above command runs only the tests in [login.js](https://github.com/gabrielaz314/731project/blob/master/tests/login.js)
-      - Login.js assumes that the project is running in `http://localhost:3000/`, to change this the [browser url in login.js](https://github.com/gabrielaz314/731project/blob/master/tests/login.js#L3) needs to be changed.
+      - In a seperate terminal, navigate to the project folder and run `npx nightwatch tests --env chrome` (replace 'chrome' with your browser)
+      - Note: the above command runs ALL the tests in the 'tests' folder
+      - The tests assume that the project is running in `http://localhost:3000/`, to change this the [browser url](https://github.com/gabrielaz314/731project/blob/master/tests/A-mainElements.js#L3) in each testing file needs to be changed.
 
 Notes: 
 - Add all new tests to the [tests](https://github.com/gabrielaz314/731project/tree/master/tests) folder.
