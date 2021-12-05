@@ -1,1 +1,1 @@
-mongodb+srv://testUser:731project@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority
+mongodb+srv://USER:PASS@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority
