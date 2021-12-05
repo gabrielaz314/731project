@@ -355,6 +355,7 @@ async function test(){
 
 module.exports = {
     getAllCourses,
+    getCourseByCode,
     getAllCoursesKeyword,
     getFulfilledCourses,
     createSavedCourse,
