@@ -4,9 +4,9 @@
     <div class="tile is-parent is-vertical is-6 p-4">
       {{#each this}}
         <div class="tile box is-flex is-flex-direction-column has-background-link-light">
-          <h3 class="title is-5">Semester {{this.name}}</h3>
+          <h3 class="title is-5">{{this.name}}</h3>
           {{#each this.courses}}
-            {{> course_card course=this}}
+            {{> course_card_search course=this}}
           {{/each}}
         </div>
       {{/each}}

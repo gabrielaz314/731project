@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "axios": "^0.24.0",
     "connect-livereload": "^0.6.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -17,7 +18,8 @@
     "mongodb": "^4.1.4",
     "morgan": "~1.9.1",
     "nightwatch": "^1.7.12",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "underscore": "^1.13.1"
   },
   "devDependencies": {
     "chromedriver": "^96.0.0",
