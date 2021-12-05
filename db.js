@@ -6,18 +6,21 @@ var url = 'mongodb+srv://testUser:731project@cluster0.tyvwx.mongodb.net/cps731pr
 var db = null;
 var client = null;
 async function connect() {
-    if (db == null) {
-        var options = {
-            useUnifiedTopology: true,
-        };
-
-        client = await MongoClient.connect(url, options);
-        db = await client.db("cps731project");
+    try {
+        if (db == null) {
+            var options = {
+                useUnifiedTopology: true,
+            };
+    
+            client = await MongoClient.connect(url, options);
+            db = await client.db("cps731project");
+        }
+    } catch(err) {
+        console.log(err)
     }
 
     return db;
 }
-
 
 // QUERIES-----------------------------------------------------------------------------------------------
 
@@ -81,11 +84,11 @@ async function createCourse(courseId, courseTitle, courseCode, courseSection, co
 // createCourse("1038", "Music and Film", "RTA180", "011", "This course explores the relationship between music and film.", "1", "60", "Media", "Winter", "2022");
 // createCourse("1039", "The Geography of Toronto", "GEO793", "021", "This course provides students with an understanding of Toronto, by examining interrelated historical, social, cultural, political, and environmental issues.", "1", "60", "Geography", "Winter", "2022");
 
-
 async function getAllCourses() {
     var conn = await connect();
     var course = await conn.collection('Course').find().sort({"year":-1, "semester":1, "courseId":1}).toArray();
-    console.log(course);
+    // console.log(course);
+    return course;
 }
 //getAllCourses();
 
@@ -95,9 +98,6 @@ async function getAllCoursesKeyword(keyword) {
     console.log(course);
 }
 //getAllCoursesKeyword("1001");
-
-
-
 
 //---------------------------------
 // FulfilledCourses Table Queries
@@ -128,12 +128,10 @@ async function createFulfilledCourse(studentNumber, courseId, programArea, enrol
 async function getFulfilledCourses(studentNumber) {
     var conn = await connect();
     var course = await conn.collection('FulfilledCourses').find({ studentNumber }).toArray();
-    console.log(course);
+    // console.log(course);
+    return(course);
 }
 //getFulfilledCourses("123456");
-
-
-
 
 //---------------------------------
 // SavedCourses Table Queries
@@ -160,9 +158,6 @@ async function getSavedCourses(studentNumber) {
     console.log(course);
 }
 //getSavedCourses("123456");
-
-
-
 
 //---------------------------------
 // NonRelatedCourse Table Queries
@@ -222,7 +217,6 @@ async function getCourseRequirement(courseId) {
 }
 //getCourseRequirement("1016");
 
-
 //---------------------------------
 // CourseCalendar Table Queries 
 //---------------------------------
@@ -241,16 +235,12 @@ async function addCourseToCalendar(courseId, studentNumber, calendarPlanName, co
 // addCourseToCalendar("1013", "123456", "Plan 1", "01-09-2021", "01-12-2021", "Fall 2021", "1", "Susan Brown", "Lecture");
 // addCourseToCalendar("1029", "123456", "Plan 1", "01-09-2021", "01-12-2021", "Fall 2021", "1", "James Miller", "Lecture + Lab");
 
-
-
-
 async function getCourseCalendarCourses(studentNumber, calendarPlanName) {
     var conn = await connect();
     var course = await conn.collection('CourseCalendar').find({studentNumber:studentNumber, calendarPlanName:calendarPlanName}).toArray();
     console.log(course);
 }
 //getCourseCalendarCourses("123456", "Plan 1");
-
 
 //---------------------------------
 // Transfer Credits Table Queries
@@ -270,16 +260,12 @@ async function addTransferCredits(studentNumber, courseId, university, programAr
 // addTransferCredits("123456", "1015", "York University", "Computer Science", "01-01-2020", "20-04-2020", "Winter 2020", "C+", "1", "Completed" );
 // addTransferCredits("123456", "1016", "York University", "Computer Science", "01-01-2020", "20-04-2020", "Winter 2020", "B", "1", "Completed" );
 
-
 async function getTransferCredits(studentNumber) {
     var conn = await connect();
     var TransferCredits = await conn.collection('TransferCredits').findOne({studentNumber:studentNumber});
     console.log(TransferCredits);
 }
 //getTransferCredits("123456");
-
-
-
 
 //---------------------------------
 // Student Table Queries
@@ -295,15 +281,11 @@ async function createStudent(firstName, lastName, dateOfBirth, gender, phoneNumb
     conn.collection('Student').insertOne({ firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, userName, password, studentNumber, program, programArea, enrolledDate, gradDate });
 }
 
-
 async function getStudent(studentNumber) {
     var conn = await connect();
     var course = await conn.collection('Student').findOne({ studentNumber });
     return [firstName, lastName, phoneNumber, emailAddress,studentNumber, program, enrolledDate, gradDate];
 }
-
-
-
 
 //---------------------------------
 // CourseManager Table Queries
@@ -336,9 +318,6 @@ async function test(){
 //getCourseManager("2");
 //test();
 
-
-
-
 module.exports = {
     getAllCourses,
     getAllCoursesKeyword,
@@ -351,10 +330,6 @@ module.exports = {
     getCourseCalendarCourses,
     getTransferCredits,    
 }
-
-
-
-
 
 // Old queries ------------------------
 

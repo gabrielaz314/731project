@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var axios = require('axios');
+
 const {
-  calendar,
+  // calendar,
   fulfilled_courses,
   transfer_courses,
   non_related_courses
@@ -17,26 +19,18 @@ router.get('/', function(req, res) {
 });
 
 /* App Routing */
-
-// Helper function to render semesters in 2 columns
-function splitSemesters(calendar) {
-  var a = [];
-  var b = [];
-
-  calendar.forEach((semester, index) => {
-    if (index % 2 == 0)
-      a.push(semester)
-    else
-      b.push(semester)
-  });
-  return [a,b]
-}
 router.get('/view-all-courses', function(req, res) {
-  res.render('view-all-courses', {
-    title: 'View All Courses',
-    layout: '/layouts/sb-content',
-    calendar: splitSemesters(calendar),
-  });
+  axios.get('http://localhost:3000/data/courses-by-semester/123456')
+    .then((response) => {
+      console.log(response.data)
+      res.render('view-all-courses', {
+        title: 'View All Courses',
+        layout: '/layouts/sb-content',
+        calendar: response.data,
+      });
+    })
+    .catch((err) => {console.log(err)})
+  
 });
 router.get('/fulfilled-requirements', function(req, res) {
   res.render('fulfilled-requirements', {

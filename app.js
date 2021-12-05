@@ -7,6 +7,7 @@ var db = require('./db');
 var hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
+var dataRouter = require('./routes/data');
 
 var app = express();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
+app.use('/data', dataRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
