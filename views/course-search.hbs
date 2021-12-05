@@ -9,5 +9,11 @@
     placeholder="Enter the course name/course code here"
   >
 </form>
-{{> course_grid_2 courses=search_courses}}
+<div class="p-4">
+  <div class="grid grid-cols-2 gap-6">
+    {{#each search_courses}}
+      {{> course_card_search course=this}}
+    {{/each}}
+  </div>
+</div>
  

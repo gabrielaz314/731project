@@ -131,7 +131,7 @@ async function getFulfilledCourses(studentNumber) {
     // console.log(course);
     return(course);
 }
-//getFulfilledCourses("123456");
+getFulfilledCourses("123456");
 
 //---------------------------------
 // SavedCourses Table Queries

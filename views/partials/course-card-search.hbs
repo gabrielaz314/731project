@@ -1,0 +1,32 @@
+<div class="card mb-4">
+  <header class="card-header">
+    <p class="card-header-title">
+      <span class="tag is-link mr-3">
+        {{course.courseCode}}
+      </span>
+      {{course.courseTitle}}
+    </p>
+    {{#if course.saved}}
+      <button class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fas fa-star fa-lg has-text-warning"></i>
+        </span>
+      </button>
+    {{/if}}
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <p class="course-description">
+        <span class="has-text-weight-medium">Description: </span>
+        {{course.courseDescription}}
+      </p>
+      <p><span class="has-text-weight-medium">Course Credits: </span>{{course.courseCredits}}</p>
+      <p><span class="has-text-weight-medium">Duration: </span>{{course.durationHours}}</p>
+      <p><span class="has-text-weight-medium">Department: </span>{{course.department}}</p>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Details</a>
+  </footer>
+</div>

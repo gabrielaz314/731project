@@ -1,4 +1,4 @@
-{{> content_title title="Current Course Plan"}}
+{{> content_title title="Saved Course Plan"}}
 <div class="tile is-ancestor">
   {{#each course_plan}}
     <div class="tile is-parent is-vertical is-6 p-4">
@@ -6,7 +6,7 @@
         <div class="tile box is-flex is-flex-direction-column has-background-link-light">
           <h3 class="title is-5">Semester {{this.name}}</h3>
           {{#each this.courses}}
-            {{> course_card course=this}}
+            {{> course_card_search course=this}}
           {{/each}}
         </div>
       {{/each}}
