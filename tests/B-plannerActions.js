@@ -54,7 +54,7 @@ describe('B: Calendar Planner Main Actions Tests', function() {
         .assert.visible('a', 'View Course Plans')
         .click('link text', 'View Course Plans')
         .assert.titleContains('View Courses Plan')
-        .assert.containsText('h2', 'Current Course Plan')
+        .assert.containsText('h2', 'Saved Course Plan')
     });
 
     after(browser => browser.end());

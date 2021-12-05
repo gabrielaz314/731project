@@ -5,9 +5,9 @@
 
   <testsuite name="D-plannerActionsP2"
     errors="0" failures="0" hostname="" id="" package="D-plannerActionsP2" skipped="0"
-    tests="5" time="1.170" timestamp="">
+    tests="5" time="1.284" timestamp="">
   
-    <testcase name="Demo test subpages are shown" classname="D-plannerActionsP2" time="0.2460" assertions="9">
+    <testcase name="Demo test subpages are shown" classname="D-plannerActionsP2" time="0.2260" assertions="9">
 
     
 
@@ -28,7 +28,7 @@
     
     </testcase>
   
-    <testcase name="Demo test Course Search page" classname="D-plannerActionsP2" time="0.2840" assertions="4">
+    <testcase name="Demo test Course Search page" classname="D-plannerActionsP2" time="0.4360" assertions="4">
 
     
 
@@ -39,7 +39,7 @@
     
     </testcase>
   
-    <testcase name="Demo test saving a course" classname="D-plannerActionsP2" time="0.1850" assertions="3">
+    <testcase name="Demo test saving a course" classname="D-plannerActionsP2" time="0.1870" assertions="3">
 
     
 
@@ -48,7 +48,7 @@
     
     </testcase>
   
-    <testcase name="Test Saved Courses page" classname="D-plannerActionsP2" time="0.3230" assertions="4">
+    <testcase name="Test Saved Courses page" classname="D-plannerActionsP2" time="0.2980" assertions="4">
 
     
 
@@ -59,7 +59,7 @@
     
     </testcase>
   
-    <testcase name="Test Adding Course to Planner" classname="D-plannerActionsP2" time="0.1320" assertions="3">
+    <testcase name="Test Adding Course to Planner" classname="D-plannerActionsP2" time="0.1370" assertions="3">
 
     
 
