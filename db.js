@@ -1,7 +1,7 @@
 var { MongoClient } = require('mongodb');
 
 //var url = 'mongodb+srv://admin:admin@cluster0.j5utg.mongodb.net/cps731project?retryWrites=true&w=majority';
-var url = 'mongodb+srv://testUser:731project@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority';
+var url = 'mongodb+srv://USER:PASS@cluster0.tyvwx.mongodb.net/cps731project?retryWrites=true&w=majority';
 
 var db = null;
 var client = null;
