@@ -2,12 +2,14 @@ describe('A: Main Page Elements Tests', function() {
 
     before(browser => browser.url('http://localhost:3000/'));
   
-    test('Demo test main page', function (browser) {
+    test('Demo test login page', function (browser) {
       browser
         .waitForElementVisible('body')
-        .assert.titleContains('Home')
+        .assert.titleContains('Login Page')
+        .assert.visible('input')
+        .setValue('input', 'test1')
         .assert.visible('a')
-        .click('link text', 'App Landing Page')
+        .click('link text', 'Sign in')
         .assert.titleContains('View All Courses')
         //.expect.elements('a').count.to.equal(2)
     });

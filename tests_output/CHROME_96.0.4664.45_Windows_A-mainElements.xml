@@ -5,24 +5,9 @@
 
   <testsuite name="A-mainElements"
     errors="0" failures="0" hostname="" id="" package="A-mainElements" skipped="0"
-    tests="6" time="1.427" timestamp="">
+    tests="6" time="1.547" timestamp="">
   
-    <testcase name="Demo test main page" classname="A-mainElements" time="0.2520" assertions="4">
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Test main page elements" classname="A-mainElements" time="0.1540" assertions="7">
-
-    
-
-    
+    <testcase name="Demo test login page" classname="A-mainElements" time="0.3810" assertions="5">
 
     
 
@@ -35,9 +20,7 @@
     
     </testcase>
   
-    <testcase name="Test subpage links are visible" classname="A-mainElements" time="0.2740" assertions="8">
-
-    
+    <testcase name="Test main page elements" classname="A-mainElements" time="0.1800" assertions="7">
 
     
 
@@ -54,7 +37,15 @@
     
     </testcase>
   
-    <testcase name="Test Fulfilled Requirements page" classname="A-mainElements" time="0.3690" assertions="4">
+    <testcase name="Test subpage links are visible" classname="A-mainElements" time="0.2860" assertions="8">
+
+    
+
+    
+
+    
+
+    
 
     
 
@@ -65,7 +56,7 @@
     
     </testcase>
   
-    <testcase name="Test Transfer Credits page" classname="A-mainElements" time="0.1910" assertions="4">
+    <testcase name="Test Fulfilled Requirements page" classname="A-mainElements" time="0.2950" assertions="4">
 
     
 
@@ -76,7 +67,18 @@
     
     </testcase>
   
-    <testcase name="Test Non-Related Completed Courses page" classname="A-mainElements" time="0.1870" assertions="4">
+    <testcase name="Test Transfer Credits page" classname="A-mainElements" time="0.1950" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test Non-Related Completed Courses page" classname="A-mainElements" time="0.2100" assertions="4">
 
     
 

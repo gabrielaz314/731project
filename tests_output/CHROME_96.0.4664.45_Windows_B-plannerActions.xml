@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="1">
+            tests="6">
 
   <testsuite name="B-plannerActions"
     errors="0" failures="0" hostname="" id="" package="B-plannerActions" skipped="0"
-    tests="1" time="0.2240" timestamp="">
+    tests="6" time="0.9690" timestamp="">
   
-    <testcase name="Demo test subpages are shown" classname="B-plannerActions" time="0.2240" assertions="9">
+    <testcase name="Demo test subpages are shown" classname="B-plannerActions" time="0.2200" assertions="9">
 
     
 
@@ -18,6 +18,55 @@
     
 
     
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Demo test Course Search page" classname="B-plannerActions" time="0.1010" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Demo test saving a course" classname="B-plannerActions" time="0.1160" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test Saved Courses page" classname="B-plannerActions" time="0.2140" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test Adding Course to Planner" classname="B-plannerActions" time="0.1130" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test View Course Plan page" classname="B-plannerActions" time="0.2050" assertions="4">
 
     
 

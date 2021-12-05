@@ -89,6 +89,14 @@ async function getAllCourses() {
 }
 //getAllCourses();
 
+async function getCourseByCode(courseCode) {
+    var conn = await connect();
+    var course = await conn.collection('Course').find({courseCode:courseCode}).toArray();
+    console.log(course);
+}
+//getCourseByCode('MUS106')
+
+
 async function getAllCoursesKeyword(keyword) {
     var conn = await connect();
     var course = await conn.collection('Course').find( { $text: { $search: keyword } }).toArray();
@@ -117,13 +125,19 @@ async function createFulfilledCourse(studentNumber, courseId, programArea, enrol
 // createFulfilledCourse("123456", "1005", "Computer Science", "14-01-2021","20-05-2021", "Winter 2021", "C-", "Completed");
 // createFulfilledCourse("123456", "1006", "Computer Science", "14-01-2021","20-05-2021", "Winter 2021", "B", "Completed");
 // createFulfilledCourse("123456", "1007", "Computer Science", "14-01-2021","20-05-2021", "Winter 2021", "B-", "Completed");
-//createFulfilledCourse("123456", "1008", "Computer Science", "01-09-2020","01-12-2020", "Fall 2020", "B", "Completed");
+// createFulfilledCourse("123456", "1008", "Computer Science", "01-09-2020","01-12-2020", "Fall 2020", "B", "Completed");
 
 //Transfer courses (completed)
 // createFulfilledCourse("123456", "1003", "Computer Science", "01-09-2019", "01-12-2019", "Fall 2019", "A", "Completed" );
 // createFulfilledCourse("123456", "1002", "Computer Science", "01-09-2019", "01-12-2019", "Fall 2019", "B+", "Completed" );
 // createFulfilledCourse("123456", "1015", "Computer Science", "01-01-2020", "20-04-2020", "Winter 2020", "C+", "Completed" );
 // createFulfilledCourse("123456", "1016", "Computer Science", "01-01-2020", "20-04-2020", "Winter 2020", "B", "Completed" );
+
+// createFulfilledCourse("123456", "1004", "Music", "01-09-2020","01-12-2020", "Fall 2020", "C+", "Completed");
+// createFulfilledCourse("123456", "1018", "Computer Science", "01-09-2020","01-12-2020", "Fall 2020", "A-", "Completed");
+// createFulfilledCourse("123456", "1019", "French", "14-01-2021","20-05-2021", "Winter 2021", "A-", "Completed");
+// createFulfilledCourse("123456", "1013", "Mathematics", "14-01-2021","20-05-2021", "Winter 2021", "B", "Completed");
+// createFulfilledCourse("123456", "1011", "Computer Science", "01-09-2020","01-12-2020", "Fall 2020", "B+", "Completed");
 
 async function getFulfilledCourses(studentNumber) {
     var conn = await connect();
