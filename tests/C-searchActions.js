@@ -15,22 +15,22 @@ describe('C: Course Search Main Actions Tests', function() {
         .assert.visible('a', 'View Course Plans')
     });
 
-    // test('Test Course Search page', function (browser) {
-    //     browser
-    //       .waitForElementVisible('body')
-    //       .assert.visible('a', 'Non-related & Other Courses')
-    //       .click('link text', 'Non-related & Other Courses')
-    //       .assert.titleContains('Transfer Credits') //edit!!!
-    //       .assert.containsText('h2', 'Completed Courses - Non-Related & Other')
-    //   });
+    test('Test Course Search page', function (browser) {
+        browser
+          .waitForElementVisible('body')
+          .assert.visible('a', 'Course Search')
+          .click('link text', 'Course Search')
+          .assert.titleContains('Course Search')
+          .assert.containsText('h2', 'Course Search')
+      });
 
-    // test('Demo test Course Search box - invalid course', function (browser) {
-    //     browser
-    //       .waitForElementVisible('body')
-    //       .assert.titleContains('Course Search')
-    //       .assert.visible('input')
-    //       .setValue('input', 'CPS209')
-    //   });
+    test('Demo test Course Search box - invalid course', function (browser) {
+        browser
+          .waitForElementVisible('body')
+          .assert.titleContains('Course Search')
+          .assert.visible('input')
+          .setValue('input', 'CPS100')
+      });
 
     after(browser => browser.end());
   });
